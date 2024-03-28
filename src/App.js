@@ -43,7 +43,7 @@ function App() {
               if (continentMatch && nameMatch) {
                 return (
                   <div key={country.id} className='bg-slate-800 rounded-xl overflow-hidden transition-all duration-300 hover:rounded-sm'>
-                  <img src={country.flags.png} alt={`${country.name}-flag`} className='aspect-video w-full'/>
+                  <img src={country.flags.png} alt={`${country.name}-flag`} className='aspect-video w-full' loading='lazy'/>
                   <div className="text p-8 text-white">
                     <h1 className=' text-xl font-bold mb-4'>{country.name}</h1>
                     <p className='capitalize text-sm mb-1'><b>Population:</b> {country.population}</p>
