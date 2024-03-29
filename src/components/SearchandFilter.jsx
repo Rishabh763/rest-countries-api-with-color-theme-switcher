@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { IoSearch } from "react-icons/io5";
 
-function SearchandFliter({ onChange, onSearch }) { // Fixed destructuring of props
+function SearchandFilter({ onChange, onSearch }) { // Fixed destructuring of props
 
     const [selectedContinent, setSelectedContinent] = useState('');
 
@@ -34,4 +34,4 @@ function SearchandFliter({ onChange, onSearch }) { // Fixed destructuring of pro
   )
 }
 
-export default SearchandFliter;
+export default SearchandFilter;

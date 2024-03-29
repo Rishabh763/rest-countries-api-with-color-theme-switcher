@@ -1,68 +1,41 @@
-import React ,{useState} from 'react'
-import { ReactLenis, useLenis } from '@studio-freight/react-lenis'
-import Header from './components/Header'
-import SearchandFliter from './components/SearchandFliter'
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ReactLenis, useLenis } from '@studio-freight/react-lenis';
+import Header from './components/Header';
 import data from './data.json';
-import { Link } from 'react-router-dom';
+import CountryPage from './Pages/CountryPage';
+import Home from "./Pages/Home";
 
 function App() {
   const lenis = useLenis(({ scroll }) => {
     // called every scroll
-  })
+  });
 
-  const [selectedContinent, setSelectedContinent] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState(null);
 
-  const handleContinentChange = (continent) => {
-    setSelectedContinent(continent);
-    // You can perform any additional actions here based on the selected continent
+  const handleCountrySelect = (country) => {
+    setSelectedCountry(country);
+    const address = selectedCountry;
   };
 
-  const [searchText, setSearchText] = useState('');
-
-    const handleSearch = (text) => {
-      setSearchText(text);
-      // You can perform any additional actions here based on the search text
-    };
-
-    
-    
-    return (
+  return (
+    <Router>
       <ReactLenis root>
-
-      <div className='content-grid bg-slate-700'>
-            <Header/>
-          <div class="min-h-[88vh]">
-            <SearchandFliter onSearch={handleSearch} onChange={handleContinentChange}/>
-            {/* <p className='text-white'>Selected Continent: {selectedContinent}</p> */}
-            <div class="grids py-8">
-            {data.map(country => {
-              const countryName = country.name.toLowerCase();
-              const search = searchText.toLowerCase();
-              const continentMatch = selectedContinent === '' || country.region === selectedContinent;
-              const nameMatch = countryName.includes(search);
-              if (continentMatch && nameMatch) {
-                return (
-                  <div key={country.id} className='bg-slate-800 rounded-xl overflow-hidden transition-all duration-300 hover:rounded-sm'>
-                  <img src={country.flags.png} alt={`${country.name}-flag`} className='aspect-video w-full' loading='lazy'/>
-                  <div className="text p-8 text-white">
-                    <h1 className=' text-xl font-bold mb-4'>{country.name}</h1>
-                    <p className='capitalize text-sm mb-1'><b>Population:</b> {country.population}</p>
-                    <p className='capitalize text-sm mb-1'><b>Region:</b> {country.region}</p>
-                    <p className='capitalize text-sm mb-1'><b>Capital:</b> {country.capital}</p>
-                  </div>
-                </div>
-                );
-              }
-              return null;
-            })}
-            </div>
-          
+        <div className='content-grid bg-slate-700'>
+          <Header />
+          <div className="min-h-[88vh]">
+            <Routes>
+              <Route path='/' element={<Home
+                data={data}
+                handleCountrySelect={handleCountrySelect}
+              />} />
+              <Route path={'/:countryName'} element={<CountryPage data={data}/>} />
+            </Routes>
           </div>
-
-      </div>
-
-    </ReactLenis>
-  )
+        </div>
+      </ReactLenis>
+    </Router>
+  );
 }
 
-export default App
+export default App;

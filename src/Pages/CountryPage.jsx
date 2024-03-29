@@ -1,15 +1,85 @@
-import React from 'react';
+import React from "react";
+import { useParams, Link } from "react-router-dom";
+import { IoIosArrowRoundBack } from "react-icons/io";
 
-function CountryPage({ match }) {
-  const { params: { countryId } } = match;
-  // Fetch country data based on countryId from data.json or any other data source
-  // Here, you can fetch the specific country's data and render it
+function CountryPage({ data }) {
+  const { countryName } = useParams();
+  const country = data.find(
+    (c) => c.name.toLowerCase() === countryName.toLowerCase()
+    );
+    console.log(country.name)
+    console.log(countryName)
+    
+
+  if (!country) {
+    return (
+      <div className="text-white text-5xl grid place-content-center h-full">
+        Country not found
+      </div>
+    );
+  }
 
   return (
-    <div>
-      <h1>Country Page</h1>
-      <p>Country ID: {countryId}</p>
-      {/* Render detailed information about the country */}
+    <div className="text-white py-8">
+      <Link
+        to="/"
+        className="bg-slate-800 py-2 px-4 rounded flex items-center w-fit gap-1"
+      >
+        <IoIosArrowRoundBack size={32} />
+        Back to Home
+      </Link>
+      <div className="mt-8 grid md:grid-cols-2 items-start gap-8">
+        <img
+          src={country.flags.svg}
+          alt={`${country.name}-flag`}
+          className="aspect-[3/2] w-full sm:w-[75%] mx-auto object-cover rounded"
+        />
+        <div className="info ">
+          <h1 className="font-bold text-3xl mb-6">{country.name}</h1>
+          <div className="grid md:grid-cols-2">
+            <div className="col1 mb-6">
+              <p>Country Name: {country.nativeName}</p>
+              <p>Population: {country.population}</p>
+              <p>Region: {country.region}</p>
+              <p>Sub Region: {country.subregion}</p>
+              <p>Capital: {country.capital}</p>
+            </div>
+            <div className="col2">
+              <p>Top Level Domain: {country.topLevelDomain}</p>
+              <p>
+                Currencies:{" "}
+                {country.currencies.map((curr) => curr.name).join(", ")}
+              </p>
+              <p>
+                Languages:{" "}
+                {country.languages.map((lang) => lang.name).join(", ")}
+              </p>
+            </div>
+          </div>
+          <p className="flex gap-x-8 gap-y-2 items-center flex-wrap">
+            Border Countries:
+            <div className="flex gap-2 flex-wrap">
+              {country.borders.map((bor,index) => {
+                const matchingCountry = data.find(
+                  (country) => country.alpha3Code === bor
+                );
+                if (matchingCountry) {
+                  return (
+                    <Link
+                      to={`/${matchingCountry.name}`}
+                      className="p-2 bg-slate-800 rounded"
+                      key={index}
+                    >
+                      {bor}
+                    </Link>
+                  );
+                }
+                return null;
+              })}
+            </div>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
