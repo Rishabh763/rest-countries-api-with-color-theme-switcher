@@ -15,8 +15,9 @@ function App() {
 
   const handleCountrySelect = (country) => {
     setSelectedCountry(country);
-    const address = selectedCountry;
+    console.log(country)
   };
+
 
   return (
     <Router>
@@ -29,7 +30,10 @@ function App() {
                 data={data}
                 handleCountrySelect={handleCountrySelect}
               />} />
-              <Route path={'/:countryName'} element={<CountryPage data={data}/>} />
+               <Route
+                path={'/:countryName'}
+                element={<CountryPage data={data} />}
+              />
             </Routes>
           </div>
         </div>

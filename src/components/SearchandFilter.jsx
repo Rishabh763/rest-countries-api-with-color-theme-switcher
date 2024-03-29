@@ -23,7 +23,7 @@ function SearchandFilter({ onChange, onSearch }) { // Fixed destructuring of pro
     <div className='flex flex-wrap gap-4 py-6 justify-between sticky top-[12vh]'>
         <div className="flex items-center  gap-4 py-2 px-6 rounded bg-slate-800"><IoSearch size={32} color='white'/><input className='bg-transparent focus:outline-none text-white' type="text" placeholder='Search for a country...' onChange={handleInputChange}/></div> {/* Added onChange event listener */}
         <select className='text-white px-4 py-2 rounded bg-slate-800' id="continentSelect" value={selectedContinent} onChange={handleSelectChange} >
-            <option value="">Fliter by Region</option>
+            <option value="">All</option>
             <option value="Asia">Asia</option>
             <option value="Africa">Africa</option>
             <option value="Americas">America</option>

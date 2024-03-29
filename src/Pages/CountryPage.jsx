@@ -4,12 +4,10 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 
 function CountryPage({ data }) {
   const { countryName } = useParams();
+  const decodedCountryName = decodeURIComponent(countryName);
   const country = data.find(
-    (c) => c.name.toLowerCase() === countryName.toLowerCase()
-    );
-    console.log(country.name)
-    console.log(countryName)
-    
+    (c) => c.name.toLowerCase() === decodedCountryName.toLowerCase()
+  );
 
   if (!country) {
     return (
@@ -23,7 +21,7 @@ function CountryPage({ data }) {
     <div className="text-white py-8">
       <Link
         to="/"
-        className="bg-slate-800 py-2 px-4 rounded flex items-center w-fit gap-1"
+        className="bg-slate-800 shadow-lg shadow-slate-800 py-2 px-4 rounded flex items-center w-fit gap-1"
       >
         <IoIosArrowRoundBack size={32} />
         Back to Home
@@ -56,26 +54,32 @@ function CountryPage({ data }) {
               </p>
             </div>
           </div>
-          <p className="flex gap-x-8 gap-y-2 items-center flex-wrap">
+          <p className="flex gap-x-4 gap-y-2 items-center flex-wrap">
             Border Countries:
             <div className="flex gap-2 flex-wrap">
-              {country.borders.map((bor,index) => {
-                const matchingCountry = data.find(
-                  (country) => country.alpha3Code === bor
-                );
-                if (matchingCountry) {
-                  return (
-                    <Link
-                      to={`/${matchingCountry.name}`}
-                      className="p-2 bg-slate-800 rounded"
-                      key={index}
-                    >
-                      {bor}
-                    </Link>
-                  );
-                }
-                return null;
-              })}
+              {country.borders?.length > 0 ? (
+                <div className="flex gap-2 flex-wrap">
+                  {country.borders.map((bor, index) => {
+                    const matchingCountry = data.find(
+                      (country) => country.alpha3Code === bor
+                    );
+                    if (matchingCountry) {
+                      return (
+                        <Link
+                          to={`/${matchingCountry.name}`}
+                          className="p-2 shadow-lg shadow-slate-800 bg-slate-800 rounded"
+                          key={index}
+                        >
+                          {bor}
+                        </Link>
+                      );
+                    }
+                    return null; // Return null if no matching country is found
+                  })}
+                </div>
+              ) : (
+                <p>no border sharing countries</p>
+              )}
             </div>
           </p>
         </div>
