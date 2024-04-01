@@ -18,10 +18,10 @@ function CountryPage({ data }) {
   }
 
   return (
-    <div className="text-white py-8">
+    <div className="country-card py-8">
       <Link
         to="/"
-        className="bg-slate-800 shadow-lg shadow-slate-800 py-2 px-4 rounded flex items-center w-fit gap-1"
+        className="shadow-lg shadow-slate-800 py-2 px-4 rounded flex items-center w-fit gap-1"
       >
         <IoIosArrowRoundBack size={32} />
         Back to Home
@@ -67,7 +67,7 @@ function CountryPage({ data }) {
                       return (
                         <Link
                           to={`/${matchingCountry.name}`}
-                          className="p-2 shadow-lg shadow-slate-800 bg-slate-800 rounded"
+                          className="p-2 shadow-lg shadow-slate-800  rounded"
                           key={index}
                         >
                           {bor}

@@ -55,8 +55,30 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  color-scheme: dark;
+  --bg-900: hsl(0, 0%, 100%);
+  --text : hsl(200, 15%, 8%);
+  --bg-700 : hsl(0, 0%, 80%);
+
+  color-scheme: only light;
 }
+
+body[data-theme="dark"]{
+  --bg-900: hsl(207, 26%, 17%);
+  --text : hsl(0, 0%, 100%);
+  --bg-700 : hsl(209, 23%, 22%);
+  color-scheme: only dark;
+
+}
+
+body[data-theme="light"]{
+  --bg-900: hsl(0, 0%, 100%);
+  --text : hsl(200, 15%, 8%);
+  --bg-700 : hsl(0, 0%, 80%);
+
+  color-scheme: only light;
+
+}
+
 
 /* A elements that don't have a class get default styles */
 a:not([class]) {
@@ -157,4 +179,25 @@ option{
 }
 .header-text-1{
   font-size: clamp(1rem,3vw,2rem);
+}
+
+.content-grid{
+  background-color: var(--bg-700);
+  color: var(--text);
+
+}
+
+.header,.search-input{
+  background-color: var(--bg-900);
+  color: var(--text);
+}
+
+.card{
+  background-color: var(--bg-900);
+  color: var(--text);
+}
+
+.country-card{
+  /* background-color: var(--bg-700); */
+  color: var(--text);
 }

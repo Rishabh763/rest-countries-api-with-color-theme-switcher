@@ -22,7 +22,7 @@ function App() {
   return (
     <Router>
       <ReactLenis root>
-        <div className='content-grid bg-slate-700'>
+        <div className='content-grid'>
           <Header />
           <div className="min-h-[88vh]">
             <Routes>

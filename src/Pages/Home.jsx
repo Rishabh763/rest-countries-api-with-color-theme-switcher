@@ -31,10 +31,10 @@ function Home({ data, handleCountrySelect }) {
           const nameMatch = countryName.includes(search);
           if (continentMatch && nameMatch) {
             return (
-              <Link to={`/${countryName}`}  onClick={() => handleCountrySelect(country)} key={index} className="card-link h-full">
-                <div className='bg-slate-800 rounded-xl overflow-hidden transition-all duration-300 hover:rounded'>
+              <Link to={`/${countryName}`}  onClick={() => handleCountrySelect(country)} key={index} >
+                <div className='card h-full rounded-xl overflow-hidden transition-all duration-300 hover:rounded'>
                   <img src={country.flags.png} alt={`${country.name}-flag`} className='aspect-video w-full  object-cover' loading='lazy' />
-                  <div className="text p-8 text-white">
+                  <div className="text p-8 ">
                     <h1 className=' text-xl font-bold mb-4'>{country.name}</h1>
                     <p className='capitalize text-sm mb-1'><b>Population:</b> {country.population}</p>
                     <p className='capitalize text-sm mb-1'><b>Region:</b> {country.region}</p>
