@@ -198,6 +198,5 @@ option{
 }
 
 .country-card{
-  /* background-color: var(--bg-700); */
   color: var(--text);
 }
