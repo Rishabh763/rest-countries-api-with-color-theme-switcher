@@ -21,7 +21,7 @@ function SearchandFilter({ onChange, onSearch }) { // Fixed destructuring of pro
 
   return (
     <div className='flex flex-wrap gap-4 py-6 justify-between sticky top-[12vh]'>
-        <div className="flex items-center  gap-4 py-2 px-6 rounded search-input"><IoSearch size={32} color='white'/><input className='bg-transparent focus:outline-none text-white' type="text" placeholder='Search for a country...' onChange={handleInputChange}/></div> {/* Added onChange event listener */}
+        <div className="flex items-center  gap-4 py-2 px-6 rounded search-input"><IoSearch size={32} /><input className='bg-transparent focus:outline-none text-white' type="text" placeholder='Search for a country...' onChange={handleInputChange}/></div>
         <select className='px-4 py-2 rounded search-input' id="continentSelect" value={selectedContinent} onChange={handleSelectChange} >
             <option value="">All</option>
             <option value="Asia">Asia</option>
