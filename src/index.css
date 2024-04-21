@@ -200,3 +200,9 @@ option{
 .country-card{
   color: var(--text);
 }
+
+*:focus-visible{
+  outline: 3px solid var(--text);
+  outline-offset: 3px;
+  border-radius: 0.125rem;
+}
