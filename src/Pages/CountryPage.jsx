@@ -17,6 +17,11 @@ function CountryPage({ data }) {
     );
   }
 
+  const formatNumberWithCommas = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
+
   return (
     <div className="country-card py-8">
       <Link
@@ -37,7 +42,7 @@ function CountryPage({ data }) {
           <div className="grid md:grid-cols-2">
             <div className="col1 mb-6">
               <p>Country Name: {country.nativeName}</p>
-              <p>Population: {country.population}</p>
+              <p>Population: {formatNumberWithCommas(country.population)}</p>
               <p>Region: {country.region}</p>
               <p>Sub Region: {country.subregion}</p>
               <p>Capital: {country.capital}</p>

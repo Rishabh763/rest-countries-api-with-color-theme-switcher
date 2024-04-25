@@ -16,6 +16,10 @@ function Home({ data, handleCountrySelect }) {
     handleCountrySelect(null); // Clear selected country when performing a search
   };
 
+  const formatNumberWithCommas = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   if (!data) {
     return <div>No data available.</div>;
   }
@@ -36,7 +40,7 @@ function Home({ data, handleCountrySelect }) {
                   <img src={country.flags.png} alt={`${country.name}-flag`} className='aspect-video w-full  object-cover' loading='lazy' />
                   <div className="text p-8 ">
                     <h1 className=' text-xl font-bold mb-4'>{country.name}</h1>
-                    <p className='capitalize text-sm mb-1'><b>Population:</b> {country.population}</p>
+                    <p className='capitalize text-sm mb-1'><b>Population:</b> {formatNumberWithCommas(country.population)}</p>
                     <p className='capitalize text-sm mb-1'><b>Region:</b> {country.region}</p>
                     <p className='capitalize text-sm mb-1'><b>Capital:</b> {country.capital}</p>
                   </div>
